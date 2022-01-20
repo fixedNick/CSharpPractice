@@ -6,30 +6,50 @@ namespace CSharpPractice;
 
 internal class InvertStrings
 {
-    private static string EnteredString = string.Empty;
-    private static string InvertedString = string.Empty;
+    private static List<string> EnteredStrings;
+    private static List<string> InvertedStrings;
 
     public static void Init()
     {
-        EnterString();
+        EnterStrings();
         MakeInvert();
         ShowResult();
+        SaveResult();
     }
 
-    private static void EnterString()
+    private static void SaveResult()
     {
-        Console.Write("Enter string: ");
-        EnteredString = Console.ReadLine();
+        System.IO.File.WriteAllLines("InvertedStringResult.txt", InvertedStrings);
+    }
+
+    private static void EnterStrings()
+    {
+        string filename = string.Empty;
+        while (true)
+        {
+            Console.Write("Enter filename: ");
+            filename = Console.ReadLine();
+            if (System.IO.File.Exists(filename) == false)
+                Console.WriteLine("Файл не найден");
+            else break;
+        }
+        EnteredStrings = System.IO.File.ReadAllLines(filename).ToList();
     }
 
     private static void MakeInvert()
     {
-        for (int i = EnteredString.Length - 1; i >= 0; i--)
-            InvertedString += EnteredString[i];
+        InvertedStrings = new List<string>();
+        for (int line = 0; line < EnteredStrings.Count; line++)
+        {
+            InvertedStrings.Add(string.Empty);
+            for (int i = EnteredStrings[line].Length - 1; i >= 0; i--)
+                InvertedStrings[line] += EnteredStrings[line][i];
+        }
     }
 
     private static void ShowResult()
     {
-        Console.WriteLine(InvertedString);
+        foreach (var line in InvertedStrings)
+            Console.WriteLine(line);
     }
 }
