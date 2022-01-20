@@ -27,6 +27,9 @@ while (true)
         case TaskNumber.TwoNumbersCombo:
             TwoNumbersCombo.Init();
             break;
+        case TaskNumber.InvertStrings:
+            InvertStrings.Init();
+            break;
     
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpPractice; // C# 9.0 namespace распространяется на файл.
 
@@ -92,6 +89,8 @@ internal class TwoNumbersCombo
         Console.WriteLine("[Итоговые комбинации]");
         foreach(var comb in Combos)
             Console.WriteLine(comb);
+
+        Console.WriteLine($"Всего комбинаций: {Combos.Count}");
     }
 
     private static void MakeCombos(int step, string str, string completeStr = "")
